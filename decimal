@@ -1,0 +1,63 @@
+
+package decimal;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package decimal;
+
+public class Primitivas { 
+    public static String s; 
+    public static void le_fita(String fita){ s = fita; } 
+    public static int[] pe = { 0 } ; 
+    public static boolean tok( String c, int[] i, int[] o ) { 
+        // c:in, i:in,o:out 
+        o[0] = i[0] + 1; 
+        if ( pe[0] < i[0]) { pe = o; } 
+	return( s.substring( i[0], i[0] + 1 ).equals( c ) ); 
+	} 
+
+    public static boolean attr(String[] v, String exp) { 
+	v[0] = exp; 
+	return (true); 
+    } 
+
+    public static boolean attr(int[] v,int exp)  { 
+	v[0] = exp; return(true); 
+    }
+}
+
+public class Decimal extends Primitivas {
+    
+    private static boolean DS( int[] V, int[] i, int[] o ){ 
+        int[] i1={0}; int[] N={0}; int[] N1={0};  
+        return (d(N, i, i1)&& DS(N1,i1,o)&& attr(V,N[0]+N1[0])
+             || attr(o,i[0])&& attr(V,0) ); 
+    } 
+
+    private static boolean d(int[] V, int[] i, int[] o) { 
+        int[] i1 ={0};
+        return (tok("C", i, o) && attr(V, 100) 
+        || tok("X", i, i1) && tok("C", i1, o) && attr(V, 90) 
+        || tok("L", i, i1) && attr(V, 50)
+        || tok("X", i, i1) && tok("L", i1, o) && attr(V, 40)
+        || tok("X", i, o) && attr(V, 10)
+        || tok("I", i, i1) && tok("X", i1, o) && attr(V, 9)
+        || tok("V", i, o) && attr(V, 5)
+        || tok("I", i, o) && attr(V, 1)
+        ); 
+    } 
+    
+    public static void main( String args[] ){ 
+        int[] i = {0}; int[] i1 = {0}; int[] o1 = {0}; int[] V1 = {0}; 
+        le_fita("XLII@"); pe[0] = 0; 
+        if ( DS( V1, i, i1 ) && tok( "@", i1, o1 ) ) { 
+        System.out.println("Romano: "+s.substring(0, s.length()-1) +" Decimal: "+V1[0]); 
+        } 
+        else { 
+        System.out.println("Erro na posicao: "+(pe[0]+1)); 
+        } 
+    }
+}
