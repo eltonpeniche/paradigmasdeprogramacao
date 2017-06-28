@@ -33,11 +33,12 @@ public class Decimal extends Primitivas {
         int[] i1 ={0};
         return (tok("C", i, o) && attr(V, 100) 
         || tok("X", i, i1) && tok("C", i1, o) && attr(V, 90) 
-        || tok("L", i, i1) && attr(V, 50)
+        || tok("L", i, o) && attr(V, 50)
         || tok("X", i, i1) && tok("L", i1, o) && attr(V, 40)
         || tok("X", i, o) && attr(V, 10)
         || tok("I", i, i1) && tok("X", i1, o) && attr(V, 9)
         || tok("V", i, o) && attr(V, 5)
+	|| tok("I", i, i1) && tok("V", i1, o) && attr(V, 4)
         || tok("I", i, o) && attr(V, 1)
         ); 
     } 
